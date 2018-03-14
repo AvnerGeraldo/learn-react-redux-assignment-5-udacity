@@ -16,6 +16,8 @@ const reducerPerson = (state = initialState, action) => {
                 ...state,
                 persons: state.persons.filter(person => person.id !== action.personId)
             }
+        default:
+            return state;
     }
 };
 
