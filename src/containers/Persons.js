@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
+//Components
 import Person from '../components/Person/Person';
 import AddPerson from '../components/AddPerson/AddPerson';
 
@@ -42,5 +43,13 @@ const mapDispatchToProps = (dispatch) => {
         onDeletePerson: (id) => dispatch({type: DELETE_PERSON, personId: id})
     };
 };
+
+const { object, func } = PropTypes;
+
+Persons.propTypes = {
+    persons: object.isRequired,
+    onAddPerson: func,
+    onDeletePerson: func
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Persons);
