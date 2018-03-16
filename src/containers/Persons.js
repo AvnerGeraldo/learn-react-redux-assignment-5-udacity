@@ -12,7 +12,7 @@ class Persons extends Component {
     render () {
         return (
             <div>
-                <AddPerson personAdded={() => this.props.onAddPerson} />
+                <AddPerson personAdded={this.props.onAddPerson} />
                 {this.props.persons.map(person => (
                     <Person 
                         key={person.id}
@@ -27,21 +27,24 @@ class Persons extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        persons: state.reducerPerson.persons
+        persons: state.persons
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAddPerson: () => dispatch({ type: ADD_PERSON }),
+        onAddPerson: (name, age) => dispatch({ 
+            type: ADD_PERSON, 
+            personData: { name: name, age: age } 
+        }),
         onDeletePerson: (id) => dispatch({ type: DELETE_PERSON, personId: id })
     };
 };
 
-const { object, func } = PropTypes;
+const { array, func } = PropTypes;
 
 Persons.propTypes = {
-    persons: object.isRequired,
+    persons: array.isRequired,
     onAddPerson: func,
     onDeletePerson: func
 }
